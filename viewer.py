@@ -28,10 +28,12 @@ def key_action():
         vel_msg.linear.x = 0
     if keys[K_DOWN]:
         vel_msg.linear.y = 0
-    if keys[K_a]:
+    #Con esta porción de codigo funcionó para llamar a las funciones del libardron
+    if keys[K_RETURN]:
         drone.takeoff()
     if keys[K_SPACE]:
         drone.land()
+    #Con esta porción de codigo funcionó para llamar a las funciones del libardron
     return vel_msg
 
 def callback(ros_data):
@@ -45,8 +47,10 @@ def callback(ros_data):
     velocity_publisher.publish(vel_msg)
 
 def main(args):
+    #Con esta porción de codigo funcionó para llamar a las funciones del libardron
     global drone
     drone = ardrone.ARDrone(True)
+    #Con esta porción de codigo funcionó para llamar a las funciones del libardron
     '''Initializes and cleanup ros node'''
     rospy.init_node('world_observation_client', anonymous=True)
     subscriber = rospy.Subscriber('/ardrone/front_camera/raw_image_compressed', CompressedImage, callback)
